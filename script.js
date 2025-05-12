@@ -1,28 +1,26 @@
-// your code here
-const form = document.getElementById("button");
-    const nameInput = document.getElementById("name");
-    const yearInput = document.getElementById("year");
-    const urlDisplay = document.getElementById("url");
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault(); // prevent page reload
+function submithandler(event){
+   event.preventDefault();
+    const inputname = document.getElementById("name").value;
+  //  console.log(inputname);
+    const inputyear = document.getElementById("year").value;
+    //console.log(inputyear);
+    
+    let basedata = "https://localhost:8080/";
+   // console.log(urldata);
+    if(inputname){
+    //    console.log("name field");
+      basedata += `?name=${inputname}`;
+    }
+    if(inputyear){
+        if(inputname){
+          basedata += `&year=${inputyear}`;
+        }
+        else{
+          basedata += `?year=${inputyear}`;
+        }
+       // console.log(urldata);
+   document.getElementById("url").textContent = basedata;
+    }
+}
 
-      const name = nameInput.value.trim();
-      const year = yearInput.value.trim();
-
-      let baseUrl = "https://localhost:8080/";
-      let queryParams = [];
-
-      if (name !== "") {
-        queryParams.push(`name=${encodeURIComponent(name)}`);
-      }
-      if (year !== "") {
-        queryParams.push(`year=${encodeURIComponent(year)}`);
-      }
-
-      if (queryParams.length > 0) {
-        baseUrl += "?" + queryParams.join("&");
-      }
-
-      urlDisplay.textContent = baseUrl;
-    });
