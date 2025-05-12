@@ -20,7 +20,8 @@ function submithandler(event){
           basedata += `?year=${inputyear}`;
         }
        // console.log(urldata);
+	}
    document.getElementById("url").textContent = basedata;
-    }
+    
 }
 
